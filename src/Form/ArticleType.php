@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use App\Entity\Categorie;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ArticleType extends AbstractType
 {
@@ -56,8 +58,22 @@ class ArticleType extends AbstractType
                 'label' => '💾 Enregistrer',
                 'attr' => ['class' => 'btn btn-primary w-100'],
             ])
-        ;
+        
+
+// Dans buildForm(), ajoutez ce champ :
+->add('categorie', EntityType::class, [
+    'class' => Categorie::class,
+    'choice_label' => 'nom',
+    'label' => 'Catégorie',
+    'placeholder' => '-- Choisir une catégorie --',
+    'required' => false,
+    'attr' => ['class' => 'form-control'],
+])
+;
     }
+
+
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {
