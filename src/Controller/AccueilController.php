@@ -25,5 +25,6 @@ public function profil(int $id): Response
 {
     return new Response("<h1>Profil de l'utilisateur n°$id</h1>");
 }
+
 }
 
